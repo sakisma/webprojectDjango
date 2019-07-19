@@ -51,3 +51,8 @@ def post_update(request,slug):
     }
     return render(request, "posts/post_update.html",context)
 
+
+def post_delete(request, slug):
+    unique_post = get_object_or_404(Post,slug=slug)
+    unique_post.delete()
+    return redirect('/post')
