@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+from django.conf.urls.static import static
 from django.urls import path
+from django.conf import settings
 from post.views import posts_list,post_details,post_create,post_update,post_delete
 
 urlpatterns = [
@@ -24,5 +26,10 @@ urlpatterns = [
     path('post/create/', post_create),
     path('post/<slug>/', post_details),
     path('post/<slug>/update/', post_update),
-    path('post/<slug>/delete/', post_delete)
+    path('post/<slug>/delete/', post_delete),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
