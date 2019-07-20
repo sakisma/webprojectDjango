@@ -1,4 +1,14 @@
-{% extends  "posts/base.html" %}
+{% extends "posts/base.html" %}
 {% block content %}
-    {{ post }}
+        <div class="row">
+            <img src="{{ post.image.url }}" class="img-responsive">
+        </div>
+        <div class="row">
+            <h2> {{ post.title }} <small>Written by {{ post.author }}</small> </h2>
+            <p>{{ post.description }}</p>
+        </div>
+    <a href="/post/"><button class="btn btn-primary">Go Back to all posts</button></a>
+    <a href="{{ post.get_delete_url }}"><button class="btn btn-default">Delete</button></a>
+    <a href="{{ post.get_update_url }}"><button class="btn btn-default">Update</button></a>
+
 {% endblock content %}
